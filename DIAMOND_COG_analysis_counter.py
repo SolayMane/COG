@@ -119,13 +119,14 @@ db_error_counter = 0
 for line in db:
 	if line.startswith(">") == True:
 		db_line_counter += 1
-		splitline = line.split("|")
+		splitline1 = line.split(" ")
+		splitline2 = splitline1[0].split(" ")
 
 		# ID, the hit returned in DIAMOND results
-		db_id = str(splitline[0] + "|" + splitline[1] + "|" + splitline[2] + "|" + splitline[3] + "|")[1:]
+		db_id = str(splitline2[0].replace(">",""))
 
 		# name and functional description
-		if "NO COG FOUND" in splitline[1]:
+		if "NO COG FOUND" in splitline1[1]:
 			db_hier = "NO HIERARCHY"
 		else:
 			hier_split = line.split("|")
